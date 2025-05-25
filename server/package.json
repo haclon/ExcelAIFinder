@@ -1,0 +1,22 @@
+{
+  "name": "excel-ai-finder-server",
+  "version": "1.0.0",
+  "description": "Excel AI Finder Backend Server",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js"
+  },
+  "dependencies": {
+    "axios": "^1.6.7",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.18.3",
+    "multer": "^1.4.5-lts.1",
+    "sse-express": "^1.0.2",
+    "xlsx": "^0.18.5"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.0"
+  }
+}

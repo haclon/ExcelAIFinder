@@ -1,0 +1,44 @@
+{
+  "name": "excel-ai-finder",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build",
+    "lint": "vue-cli-service lint",
+    "start": "node scripts/start.js",
+    "start:frontend": "vue-cli-service serve",
+    "start:backend": "cd server && node index.js",
+    "start:backend-dev": "cd server && npm run dev",
+    "install:all": "npm install && cd server && npm install",
+    "build:prod": "vue-cli-service build && node scripts/build.js",
+    "windows:start": "powershell -Command \"cd server; node index.js\" & npm run serve"
+  },
+  "keywords": [
+    "excel",
+    "search",
+    "finder",
+    "content",
+    "semantic-search",
+    "ai"
+  ],
+  "author": "",
+  "license": "MIT",
+  "description": "An advanced Excel content search tool with semantic understanding capabilities",
+  "dependencies": {
+    "axios": "^1.6.7",
+    "core-js": "^3.8.3",
+    "element-ui": "^2.15.13",
+    "vue": "^2.6.14",
+    "xlsx": "^0.18.5"
+  },
+  "devDependencies": {
+    "@vue/cli-plugin-babel": "~5.0.0",
+    "@vue/cli-plugin-eslint": "~5.0.0",
+    "@vue/cli-service": "~5.0.0",
+    "babel-eslint": "^10.1.0",
+    "eslint": "^7.32.0",
+    "eslint-plugin-vue": "^8.0.3",
+    "vue-template-compiler": "^2.6.14"
+  }
+}
