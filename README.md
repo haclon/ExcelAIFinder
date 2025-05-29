@@ -1,7 +1,9 @@
 # ExcelAIFinder
 
-![版本](https://img.shields.io/badge/版本-V1.0-blue)
-![许可证](https://img.shields.io/badge/许可证-MIT-green)
+![版本](https://img.shields.io/badge/版本-V1.0.0-blue)
+![许可证](https://img.shields.io/badge/许可证-Apache_2.0-green)
+![语言](https://img.shields.io/badge/语言-JavaScript-yellow)
+![平台](https://img.shields.io/badge/平台-跨平台-orange)
 
 这是一个用于查找和分析 Excel 文件内容的工具，支持批量处理文件、精确匹配和语义理解搜索。
 
@@ -160,7 +162,7 @@ VUE_APP_API_BASE_URL=http://localhost:3000
 
 ## 许可证
 
-MIT 
+Apache License 2.0 - 详见 [LICENSE](LICENSE) 文件
 
 ## 系统要求
 
@@ -215,4 +217,12 @@ A: 请发送邮件至[qq538825006@gmail.com](mailto:qq538825006@gmail.com)或提
 3. 完善文档
 4. 分享使用经验
 
-请确保您的提交符合项目的代码规范和文档标准。 
+请确保您的提交符合项目的代码规范和文档标准。
+
+## 相关文档
+
+- [软件著作权登记信息](软件著作权登记信息.md) - 软著申请相关材料
+- [开发教程](ExcelAIFinder_开发教程.md) - 使用Cursor开发本项目的详细教程
+
+---
+*Copyright © 2024 厦门佰能思维人工智能科技有限公司. All rights reserved.* 

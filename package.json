@@ -20,11 +20,21 @@
     "finder",
     "content",
     "semantic-search",
-    "ai"
+    "ai",
+    "office-automation",
+    "data-analysis"
   ],
-  "author": "",
-  "license": "MIT",
-  "description": "An advanced Excel content search tool with semantic understanding capabilities",
+  "author": "庄志龙 <qq538825006@gmail.com>",
+  "license": "Apache-2.0",
+  "description": "智能Excel内容检索系统 - 基于AI技术的多文件批量分析工具，支持语义理解和精确匹配",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/[your-username]/ExcelAIFinder.git"
+  },
+  "bugs": {
+    "url": "https://github.com/[your-username]/ExcelAIFinder/issues"
+  },
+  "homepage": "https://github.com/[your-username]/ExcelAIFinder#readme",
   "dependencies": {
     "axios": "^1.6.7",
     "core-js": "^3.8.3",

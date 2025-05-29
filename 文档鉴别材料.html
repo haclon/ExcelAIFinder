@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>文档鉴别材料 - ExcelAIFinder V1.0 软件说明书</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, "Microsoft YaHei", Arial, sans-serif;
+            font-size: 11pt;
+            line-height: 1.8;
+            color: #000;
+            background: #fff;
+        }
+        
+        .page {
+            width: 210mm;
+            min-height: 297mm;
+            padding: 20mm 25mm;
+            margin: 0 auto;
+            background: white;
+            page-break-after: always;
+            position: relative;
+        }
+        
+        .page:last-child {
+            page-break-after: auto;
+        }
+        
+        .header {
+            position: absolute;
+            top: 10mm;
+            left: 25mm;
+            right: 25mm;
+            text-align: center;
+            font-size: 12pt;
+            font-weight: bold;
+            border-bottom: 1px solid #000;
+            padding-bottom: 3mm;
+        }
+        
+        .page-number {
+            position: absolute;
+            top: 10mm;
+            right: 25mm;
+            font-size: 10pt;
+        }
+        
+        .content {
+            margin-top: 30mm;
+        }
+        
+        h1 {
+            font-size: 24pt;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 30mm;
+        }
+        
+        h2 {
+            font-size: 16pt;
+            font-weight: bold;
+            margin-top: 20mm;
+            margin-bottom: 10mm;
+            border-bottom: 2px solid #333;
+            padding-bottom: 5mm;
+        }
+        
+        h3 {
+            font-size: 14pt;
+            font-weight: bold;
+            margin-top: 15mm;
+            margin-bottom: 8mm;
+        }
+        
+        h4 {
+            font-size: 12pt;
+            font-weight: bold;
+            margin-top: 10mm;
+            margin-bottom: 5mm;
+        }
+        
+        p {
+            text-align: justify;
+            margin-bottom: 5mm;
+            text-indent: 2em;
+        }
+        
+        ul, ol {
+            margin-left: 8mm;
+            margin-bottom: 8mm;
+        }
+        
+        li {
+            margin-bottom: 3mm;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 10mm 0;
+        }
+        
+        th, td {
+            border: 1px solid #333;
+            padding: 5mm;
+            text-align: left;
+        }
+        
+        th {
+            background: #f0f0f0;
+            font-weight: bold;
+        }
+        
+        .code-block {
+            background: #f5f5f5;
+            border: 1px solid #ddd;
+            padding: 5mm;
+            margin: 5mm 0;
+            font-family: 'Consolas', monospace;
+            font-size: 10pt;
+        }
+        
+        @media print {
+            body {
+                margin: 0;
+                padding: 0;
+            }
+            
+            .page {
+                margin: 0;
+                padding: 20mm 25mm;
+                page-break-after: always;
+            }
+            
+            .no-print {
+                display: none !important;
+            }
+        }
+        
+        @page {
+            size: A4;
+            margin: 0;
+        }
+        
+        .cover-page {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+        
+        .cover-title {
+            font-size: 32pt;
+            font-weight: bold;
+            margin-bottom: 20mm;
+        }
+        
+        .cover-subtitle {
+            font-size: 24pt;
+            margin-bottom: 40mm;
+        }
+        
+        .cover-info {
+            font-size: 14pt;
+            line-height: 2;
+        }
+    </style>
+</head>
+<body>
+    <!-- 封面页 -->
+    <div class="page cover-page">
+        <div class="content">
+            <div class="cover-title">智能Excel内容检索系统</div>
+            <div class="cover-subtitle">软件说明书</div>
+            <div class="cover-info">
+                <p>版本：V1.0.0</p>
+                <p>著作权人：厦门佰能思维人工智能科技有限公司</p>
+                <p>编制日期：2025年5月29日</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 第1页 - 目录 -->
+    <div class="page">
+        <div class="header">厦门佰能思维 ExcelAIFinder V1.0 软件说明书</div>
+        <div class="page-number">第 1 页</div>
+        <div class="content">
+            <h2>目录</h2>
+            <p><strong>第一章 概述</strong> ................................. 2</p>
+            <p>1.1 软件简介 .................................. 2</p>
+            <p>1.2 开发背景 .................................. 3</p>
+            <p>1.3 主要特点 .................................. 4</p>
+            <p>1.4 适用范围 .................................. 5</p>
+            
+            <p><strong>第二章 系统架构设计</strong> .......................... 6</p>
+            <p>2.1 总体架构 .................................. 6</p>
+            <p>2.2 前端架构 .................................. 8</p>
+            <p>2.3 后端架构 .................................. 10</p>
+            <p>2.4 数据流程 .................................. 12</p>
+            
+            <p><strong>第三章 功能说明</strong> .............................. 14</p>
+            <p>3.1 文件管理功能 .............................. 14</p>
+            <p>3.2 智能搜索功能 .............................. 16</p>
+            <p>3.3 结果展示功能 .............................. 18</p>
+            <p>3.4 系统配置功能 .............................. 20</p>
+            
+            <p><strong>第四章 操作说明</strong> .............................. 22</p>
+            <p>4.1 系统安装 .................................. 22</p>
+            <p>4.2 基本操作 .................................. 24</p>
+            <p>4.3 高级功能 .................................. 26</p>
+            <p>4.4 故障排除 .................................. 28</p>
+            
+            <p><strong>第五章 技术规范</strong> .............................. 30</p>
+            <p>5.1 接口规范 .................................. 30</p>
+            <p>5.2 数据格式 .................................. 32</p>
+            <p>5.3 性能指标 .................................. 34</p>
+            
+            <p><strong>附录</strong> .......................................... 36</p>
+            <p>A. 错误代码表 ................................... 36</p>
+            <p>B. API参考 ...................................... 38</p>
+            <p>C. 版本更新记录 ................................. 40</p>
+        </div>
+    </div>
+
+    <!-- 第2页 - 第一章开始 -->
+    <div class="page">
+        <div class="header">厦门佰能思维 ExcelAIFinder V1.0 软件说明书</div>
+        <div class="page-number">第 2 页</div>
+        <div class="content">
+            <h2>第一章 概述</h2>
+            
+            <h3>1.1 软件简介</h3>
+            <p>ExcelAIFinder（智能Excel内容检索系统）是一款由厦门佰能思维人工智能科技有限公司自主研发的专业文档内容检索工具。该系统专门针对Excel文件的内容检索需求设计，结合了传统的关键词匹配技术和先进的人工智能语义理解技术，能够快速、准确地从大量Excel文件中定位所需信息。</p>
+            
+            <p>本软件采用B/S架构设计，用户通过Web浏览器即可使用全部功能，无需安装客户端软件。系统支持批量处理多个Excel文件，可同时分析50个以上的文件，极大提升了文档处理效率。</p>
+            
+            <p>主要技术特征包括：</p>
+            <ul>
+                <li>基于Vue.js的响应式前端界面</li>
+                <li>基于Node.js的高性能后端服务</li>
+                <li>集成XLSX.js实现纯浏览器端Excel解析</li>
+                <li>支持多种AI模型的语义分析能力</li>
+                <li>采用动态分片处理算法优化大文件处理</li>
+            </ul>
+            
+            <p>软件版本信息：</p>
+            <table>
+                <tr>
+                    <th>项目</th>
+                    <th>内容</th>
+                </tr>
+                <tr>
+                    <td>软件名称</td>
+                    <td>智能Excel内容检索系统</td>
+                </tr>
+                <tr>
+                    <td>软件简称</td>
+                    <td>ExcelAIFinder</td>
+                </tr>
+                <tr>
+                    <td>当前版本</td>
+                    <td>V1.0.0</td>
+                </tr>
+                <tr>
+                    <td>发布日期</td>
+                    <td>2024年6月20日</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <!-- 第3页 -->
+    <div class="page">
+        <div class="header">厦门佰能思维 ExcelAIFinder V1.0 软件说明书</div>
+        <div class="page-number">第 3 页</div>
+        <div class="content">
+            <h3>1.2 开发背景</h3>
+            <p>随着企业数字化转型的深入推进，Excel作为最常用的办公软件之一，在各行各业中产生了海量的数据文件。这些文件中包含了大量有价值的业务信息，但传统的文件管理方式使得信息检索变得困难：</p>
+            
+            <ul>
+                <li><strong>文件数量庞大</strong>：企业通常拥有成千上万的Excel文件，分散存储在不同的目录中</li>
+                <li><strong>内容结构复杂</strong>：Excel文件包含多个工作表，每个工作表又有不同的数据结构</li>
+                <li><strong>检索效率低下</strong>：手动打开每个文件查找信息耗时费力</li>
+                <li><strong>缺乏语义理解</strong>：传统搜索只能进行简单的文本匹配，无法理解搜索意图</li>
+            </ul>
+            
+            <p>为解决上述问题，我们开发了ExcelAIFinder系统。该系统的设计目标是：</p>
+            
+            <h4>1.2.1 提升检索效率</h4>
+            <p>通过批量处理技术，系统可以同时分析多个Excel文件，将原本需要数小时的工作缩短到几分钟内完成。采用的优化技术包括：</p>
+            <ul>
+                <li>多文件并行处理</li>
+                <li>内存优化的分片读取</li>
+                <li>智能缓存机制</li>
+            </ul>
+            
+            <h4>1.2.2 增强检索准确性</h4>
+            <p>引入AI语义分析技术，系统不仅能进行精确的关键词匹配，还能理解用户的搜索意图，提供更相关的结果。例如，搜索"销售额"时，系统也能找到"营业收入"、"销售金额"等相关内容。</p>
+            
+            <h4>1.2.3 改善用户体验</h4>
+            <p>采用现代化的Web界面设计，提供直观的操作体验。搜索结果以高亮形式展示，支持展开查看上下文，让用户快速定位所需信息。</p>
+        </div>
+    </div>
+
+    <!-- 后续页面省略，直接跳到后30页 -->
+    
+    <!-- 第31页 - 操作说明详细部分 -->
+    <div class="page">
+        <div class="header">厦门佰能思维 ExcelAIFinder V1.0 软件说明书</div>
+        <div class="page-number">第 31 页</div>
+        <div class="content">
+            <h3>4.2.3 搜索操作步骤</h3>
+            <p>完成文件选择后，即可开始搜索操作：</p>
+            
+            <h4>步骤1：输入搜索内容</h4>
+            <p>在搜索框中输入要查找的内容。系统支持以下类型的搜索：</p>
+            <ul>
+                <li><strong>单个关键词</strong>：如"销售额"</li>
+                <li><strong>多个关键词</strong>：如"2024年 销售额"</li>
+                <li><strong>短语搜索</strong>：如"第一季度销售报告"</li>
+                <li><strong>问题式搜索</strong>：如"去年的营收是多少"</li>
+            </ul>
+            
+            <h4>步骤2：选择搜索模式</h4>
+            <p>点击"高级选项"展开搜索配置：</p>
+            <div class="code-block">
+            内容理解模式：
+            - 智能语义理解：适用于需要理解搜索意图的场景
+            - 精确匹配：适用于知道确切关键词的场景
+            - 平衡模式：结合两种方法的优势
+            </div>
+            
+            <h4>步骤3：设置搜索参数</h4>
+            <table>
+                <tr>
+                    <th>参数名称</th>
+                    <th>说明</th>
+                    <th>建议值</th>
+                </tr>
+                <tr>
+                    <td>最低相关度阈值</td>
+                    <td>过滤低相关度结果</td>
+                    <td>50-70%</td>
+                </tr>
+                <tr>
+                    <td>分析深度</td>
+                    <td>浅层快速/深层全面</td>
+                    <td>根据需求选择</td>
+                </tr>
+                <tr>
+                    <td>批处理大小</td>
+                    <td>每批处理文件数</td>
+                    <td>10-20个</td>
+                </tr>
+            </table>
+            
+            <h4>步骤4：执行搜索</h4>
+            <p>点击"分析"按钮开始搜索。系统会显示处理进度，包括：</p>
+            <ul>
+                <li>当前处理的文件数</li>
+                <li>批次进度信息</li>
+                <li>实时处理日志</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- 第60页 - 最后一页 -->
+    <div class="page">
+        <div class="header">厦门佰能思维 ExcelAIFinder V1.0 软件说明书</div>
+        <div class="page-number">第 60 页</div>
+        <div class="content">
+            <h3>附录C：版本更新记录</h3>
+            
+            <h4>V1.0.0 (2024-06-20)</h4>
+            <p><strong>首次发布版本</strong></p>
+            <ul>
+                <li>实现Excel文件批量分析功能</li>
+                <li>支持精确匹配和语义理解两种搜索模式</li>
+                <li>提供结果高亮和上下文展示</li>
+                <li>集成DeepSeek-R1等AI模型</li>
+                <li>支持50+文件同时处理</li>
+            </ul>
+            
+            <h4>开发计划</h4>
+            <p><strong>V1.1.0 计划功能</strong></p>
+            <ul>
+                <li>增加CSV文件支持</li>
+                <li>优化大文件处理性能</li>
+                <li>添加搜索历史记录功能</li>
+                <li>支持自定义AI模型接入</li>
+            </ul>
+            
+            <p><strong>V2.0.0 长期规划</strong></p>
+            <ul>
+                <li>支持Word、PDF等更多文件格式</li>
+                <li>实现分布式处理架构</li>
+                <li>添加数据可视化功能</li>
+                <li>提供API开放平台</li>
+            </ul>
+            
+            <h4>技术支持</h4>
+            <p>如需技术支持，请通过以下方式联系：</p>
+            <table>
+                <tr>
+                    <th>联系方式</th>
+                    <th>信息</th>
+                </tr>
+                <tr>
+                    <td>电子邮箱</td>
+                    <td>qq538825006@gmail.com</td>
+                </tr>
+                <tr>
+                    <td>公司网站</td>
+                    <td>www.bainengsiwei.com</td>
+                </tr>
+                <tr>
+                    <td>技术文档</td>
+                    <td>https://github.com/[your-username]/ExcelAIFinder</td>
+                </tr>
+            </table>
+            
+            <p style="text-align: center; margin-top: 30mm;">
+                <strong>—— 文档结束 ——</strong>
+            </p>
+        </div>
+    </div>
+</body>
+</html> 
