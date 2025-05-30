@@ -1,54 +1,44 @@
 {
-  "name": "excel-ai-finder",
+  "name": "software-copyright-generator",
   "version": "1.0.0",
-  "private": true,
+  "description": "智能软件著作权登记材料生成器 - 基于AI技术的软著申请文档自动生成工具",
+  "main": "server/app.js",
   "scripts": {
-    "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint",
-    "start": "node scripts/start.js",
-    "start:frontend": "vue-cli-service serve",
-    "start:backend": "cd server && node index.js",
-    "start:backend-dev": "cd server && npm run dev",
-    "install:all": "npm install && cd server && npm install",
-    "build:prod": "vue-cli-service build && node scripts/build.js",
-    "windows:start": "powershell -Command \"cd server; node index.js\" & npm run serve"
+    "dev": "concurrently \"npm run server:dev\" \"npm run client:dev\"",
+    "server:dev": "cd server && nodemon app.js",
+    "client:dev": "cd client && npm start",
+    "build": "cd client && npm run build",
+    "start": "cd server && node app.js",
+    "install:all": "npm install && cd server && npm install && cd ../client && npm install",
+    "test": "npm run test:server && npm run test:client",
+    "test:server": "cd server && npm test",
+    "test:client": "cd client && npm test"
   },
   "keywords": [
-    "excel",
-    "search",
-    "finder",
-    "content",
-    "semantic-search",
-    "ai",
-    "office-automation",
-    "data-analysis"
+    "软件著作权",
+    "软著登记",
+    "文档生成",
+    "AI",
+    "自动化",
+    "copyright",
+    "software-registration",
+    "document-generator"
   ],
-  "author": "庄志龙 <qq538825006@gmail.com>",
-  "license": "Apache-2.0",
-  "description": "智能Excel内容检索系统 - 基于AI技术的多文件批量分析工具，支持语义理解和精确匹配",
+  "author": "厦门佰能思维人工智能科技有限公司 <contact@bnai.tech>",
+  "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/[your-username]/ExcelAIFinder.git"
+    "url": "https://github.com/bnai-tech/software-copyright-generator.git"
   },
   "bugs": {
-    "url": "https://github.com/[your-username]/ExcelAIFinder/issues"
+    "url": "https://github.com/bnai-tech/software-copyright-generator/issues"
   },
-  "homepage": "https://github.com/[your-username]/ExcelAIFinder#readme",
-  "dependencies": {
-    "axios": "^1.6.7",
-    "core-js": "^3.8.3",
-    "element-ui": "^2.15.13",
-    "vue": "^2.6.14",
-    "xlsx": "^0.18.5"
-  },
+  "homepage": "https://github.com/bnai-tech/software-copyright-generator#readme",
   "devDependencies": {
-    "@vue/cli-plugin-babel": "~5.0.0",
-    "@vue/cli-plugin-eslint": "~5.0.0",
-    "@vue/cli-service": "~5.0.0",
-    "babel-eslint": "^10.1.0",
-    "eslint": "^7.32.0",
-    "eslint-plugin-vue": "^8.0.3",
-    "vue-template-compiler": "^2.6.14"
+    "concurrently": "^8.2.2"
+  },
+  "engines": {
+    "node": ">=14.0.0",
+    "npm": ">=6.0.0"
   }
 }

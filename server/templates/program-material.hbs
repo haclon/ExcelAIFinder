@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{project.name}} - 程序鉴别材料</title>
+    <style>
+        body {
+            font-family: 'SimSun', serif;
+            font-size: 12px;
+            line-height: 1.4;
+            margin: 0;
+            padding: 20px;
+            background: white;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            border-bottom: 2px solid #000;
+            padding-bottom: 20px;
+        }
+        
+        .title {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        
+        .subtitle {
+            font-size: 14px;
+            margin-bottom: 5px;
+        }
+        
+        .info-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        
+        .info-table td {
+            border: 1px solid #000;
+            padding: 8px;
+            vertical-align: top;
+        }
+        
+        .info-table .label {
+            background-color: #f0f0f0;
+            font-weight: bold;
+            width: 120px;
+        }
+        
+        .code-section {
+            margin-bottom: 30px;
+        }
+        
+        .section-title {
+            font-size: 14px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            padding: 5px;
+            background-color: #f0f0f0;
+            border: 1px solid #000;
+        }
+        
+        .code-block {
+            font-family: 'Courier New', monospace;
+            font-size: 10px;
+            line-height: 1.2;
+            white-space: pre-wrap;
+            border: 1px solid #ccc;
+            padding: 10px;
+            background-color: #fafafa;
+            overflow-wrap: break-word;
+        }
+        
+        .page-break {
+            page-break-before: always;
+        }
+        
+        .page-number {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 10px;
+        }
+        
+        .file-info {
+            font-size: 11px;
+            color: #666;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        
+        @media print {
+            body {
+                margin: 0;
+                padding: 15mm;
+            }
+            
+            .page-break {
+                page-break-before: always;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 封面页 -->
+    <div class="header">
+        <div class="title">软件著作权登记申请</div>
+        <div class="subtitle">程序鉴别材料</div>
+        <div style="margin-top: 20px;">
+            <strong>{{project.name}} {{project.version}}</strong>
+        </div>
+    </div>
+    
+    <!-- 基本信息 -->
+    <table class="info-table">
+        <tr>
+            <td class="label">软件名称</td>
+            <td>{{project.name}}</td>
+        </tr>
+        <tr>
+            <td class="label">软件版本</td>
+            <td>{{project.version}}</td>
+        </tr>
+        <tr>
+            <td class="label">开发完成日期</td>
+            <td>{{project.completionDate}}</td>
+        </tr>
+        <tr>
+            <td class="label">著作权人</td>
+            <td>{{project.company}}</td>
+        </tr>
+        <tr>
+            <td class="label">开发者</td>
+            <td>{{project.author}}</td>
+        </tr>
+        <tr>
+            <td class="label">程序总行数</td>
+            <td>{{sourceCode.totalLines}} 行</td>
+        </tr>
+        <tr>
+            <td class="label">程序总页数</td>
+            <td>{{sourceCode.totalPages}} 页</td>
+        </tr>
+        <tr>
+            <td class="label">提交页数</td>
+            <td>前30页 + 后30页 = 60页</td>
+        </tr>
+        <tr>
+            <td class="label">生成日期</td>
+            <td>{{generatedDate}}</td>
+        </tr>
+    </table>
+    
+    <!-- 源文件列表 -->
+    <div class="code-section">
+        <div class="section-title">源文件列表</div>
+        <div class="code-block">
+{{#each sourceCode.sourceFiles}}
+{{this.path}} ({{this.lines}} 行)
+{{/each}}
+        </div>
+    </div>
+    
+    <div class="page-break"></div>
+    
+    <!-- 前30页程序代码 -->
+    <div class="code-section">
+        <div class="section-title">程序代码（前30页）</div>
+        <div class="code-block">{{#each sourceCode.frontLines}}{{this}}
+{{/each}}</div>
+    </div>
+    
+    {{#if sourceCode.backLines}}
+    <div class="page-break"></div>
+    
+    <!-- 后30页程序代码 -->
+    <div class="code-section">
+        <div class="section-title">程序代码（后30页）</div>
+        <div class="code-block">{{#each sourceCode.backLines}}{{this}}
+{{/each}}</div>
+    </div>
+    {{/if}}
+    
+    <div class="page-number">
+        程序鉴别材料 - 第 1-60 页
+    </div>
+</body>
+</html> 

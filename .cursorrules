@@ -1,0 +1,194 @@
+# ExcelAIFinder Project Rules
+
+## 项目概述
+ExcelAIFinder 是一个智能 Excel 内容检索系统，支持批量处理文件、精确匹配和语义理解搜索。
+
+## 技术栈
+### 前端
+- Vue 2.6.14
+- Element UI 2.15.13
+- Axios
+- Vue CLI 5
+
+### 后端
+- Node.js (14.0.0+)
+- Express 4.18.2
+- XLSX.js 0.18.5
+- Multer (文件上传)
+- Winston (日志记录)
+- dotenv (环境配置)
+
+### AI服务
+- SophNet API
+- DeepSeek-R1/v3 模型
+
+## 项目结构约定
+
+### 前端结构
+```
+src/
+├── components/          # Vue组件
+│   └── ExcelContentFinder.vue  # 主功能组件
+├── App.vue              # 应用入口
+└── main.js              # 主脚本
+```
+
+### 后端结构 (重构版)
+```
+restructure/server/
+├── config/              # 配置文件
+├── controllers/         # 控制器（处理请求）
+├── middleware/          # 中间件
+├── routes/              # 路由定义
+├── services/            # 业务逻辑服务
+├── utils/               # 工具函数
+├── app.js               # Express应用配置
+└── server.js            # 服务器入口
+```
+
+## 开发规范
+
+### 1. 代码风格
+- 使用 UTF-8 编码
+- 所有注释必须使用中文
+- 缩进使用 2 个空格
+- 字符串优先使用单引号
+- 使用 ES6+ 语法特性
+- 组件名使用 PascalCase
+- 函数和变量名使用 camelCase
+
+### 2. Vue 组件规范
+```vue
+<template>
+  <!-- 模板内容 -->
+</template>
+
+<script>
+export default {
+  name: 'ComponentName',
+  data() {
+    return {
+      // 数据定义
+    }
+  },
+  methods: {
+    // 方法定义
+  }
+}
+</script>
+
+<style scoped>
+/* 组件样式 */
+</style>
+```
+
+### 3. API 接口规范
+- RESTful 风格设计
+- 统一响应格式：
+```javascript
+{
+  success: true/false,
+  data: {},
+  message: '操作信息',
+  error: '错误信息'
+}
+```
+
+### 4. 错误处理
+- 前端使用 Element UI 的 Message 组件显示错误
+- 后端使用 Winston 记录日志
+- API 错误需要返回明确的错误信息
+- 捕获所有异步操作的错误
+
+### 5. 文件处理规范
+- Excel 文件大小限制：默认 50MB
+- 支持格式：.xlsx, .xls
+- 批量处理时设置合理的批次大小
+- 大文件处理需要显示进度
+
+### 6. AI API 使用规范
+- 配置信息通过环境变量管理
+- API 调用前进行连接测试
+- 实施 Token 使用优化策略
+- 处理 API 超时和错误响应
+
+## 最佳实践
+
+### 1. 性能优化
+- 大量数据使用分页显示
+- 批量处理文件时分批进行
+- 实施防抖和节流策略
+- 合理使用缓存机制
+
+### 2. 用户体验
+- 提供清晰的加载状态提示
+- 显示详细的处理进度
+- 错误信息要友好易懂
+- 支持操作的撤销和重试
+
+### 3. 代码维护
+- 保持函数功能单一
+- 避免过深的嵌套
+- 及时清理无用代码
+- 保持代码注释的时效性
+
+### 4. 安全考虑
+- 验证所有用户输入
+- API 密钥不能硬编码
+- 文件上传需要类型验证
+- 实施请求频率限制
+
+## Git 提交规范
+- feat: 新功能
+- fix: 修复问题
+- docs: 文档更新
+- style: 代码格式调整
+- refactor: 代码重构
+- test: 测试相关
+- chore: 构建过程或辅助工具的变动
+
+示例：`feat: 添加批量文件处理功能`
+
+## 环境配置
+
+### 开发环境
+```bash
+# 前端
+npm run serve
+
+# 后端
+cd restructure/server
+npm run dev
+```
+
+### 生产环境
+```bash
+# 构建前端
+npm run build
+
+# 启动后端
+cd restructure/server
+npm start
+```
+
+## 特别注意事项
+
+1. **保持功能独立性**：修改某个功能时，不要影响其他已完成的功能
+2. **中文编码**：确保所有中文内容使用 UTF-8 编码，避免乱码
+3. **API 配置**：SophNet API 仅支持 max_tokens 参数，不支持 temperature 等其他参数
+4. **批处理优化**：当文件数量较多时，自动启用批处理模式
+5. **语义分析优化**：直接匹配超过 5 处时自动跳过 API 调用以节约 Token
+
+## 测试要求
+
+1. 功能测试：确保所有功能正常工作
+2. 边界测试：测试文件大小限制、批处理限制等
+3. 错误测试：测试各种异常情况的处理
+4. 性能测试：测试大文件和批量文件的处理性能
+
+## 文档要求
+
+1. 代码注释清晰完整
+2. README 文件保持更新
+3. API 文档详细准确
+4. 变更日志及时记录 

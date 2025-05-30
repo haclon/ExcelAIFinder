@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>软件著作权登记申请表</title>
+    <style>
+        body {
+            font-family: 'SimSun', serif;
+            font-size: 12px;
+            line-height: 1.4;
+            margin: 0;
+            padding: 20px;
+            background: white;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            border-bottom: 2px solid #000;
+            padding-bottom: 20px;
+        }
+        
+        .title {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        
+        .form-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        
+        .form-table td,
+        .form-table th {
+            border: 1px solid #000;
+            padding: 8px;
+            vertical-align: top;
+        }
+        
+        .form-table th {
+            background-color: #f0f0f0;
+            font-weight: bold;
+            text-align: center;
+        }
+        
+        .label {
+            background-color: #f8f8f8;
+            font-weight: bold;
+            width: 150px;
+        }
+        
+        .input-field {
+            min-height: 20px;
+            border-bottom: 1px solid #000;
+            display: inline-block;
+            min-width: 200px;
+        }
+        
+        .checkbox {
+            display: inline-block;
+            width: 15px;
+            height: 15px;
+            border: 1px solid #000;
+            margin-right: 5px;
+            text-align: center;
+            vertical-align: middle;
+        }
+        
+        .section-title {
+            font-size: 14px;
+            font-weight: bold;
+            margin: 20px 0 10px 0;
+            background-color: #e0e0e0;
+            padding: 5px;
+            border: 1px solid #000;
+        }
+        
+        .note {
+            font-size: 10px;
+            color: #666;
+            margin-top: 10px;
+        }
+        
+        @media print {
+            body {
+                margin: 0;
+                padding: 15mm;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="title">计算机软件著作权登记申请表</div>
+    </div>
+    
+    <!-- 基本信息 -->
+    <div class="section-title">一、软件基本信息</div>
+    <table class="form-table">
+        <tr>
+            <td class="label">软件全称</td>
+            <td colspan="3">{{project.name}}</td>
+        </tr>
+        <tr>
+            <td class="label">软件简称</td>
+            <td>{{project.shortName}}</td>
+            <td class="label">软件版本号</td>
+            <td>{{project.version}}</td>
+        </tr>
+        <tr>
+            <td class="label">软件分类</td>
+            <td colspan="3">
+                <span class="checkbox">{{#if (eq project.category '应用软件')}}√{{/if}}</span>应用软件
+                <span class="checkbox">{{#if (eq project.category '系统软件')}}√{{/if}}</span>系统软件
+                <span class="checkbox">{{#if (eq project.category '支撑软件')}}√{{/if}}</span>支撑软件
+                <span class="checkbox">{{#if (eq project.category '嵌入式软件')}}√{{/if}}</span>嵌入式软件
+            </td>
+        </tr>
+        <tr>
+            <td class="label">开发方式</td>
+            <td colspan="3">
+                <span class="checkbox">{{#if (eq project.developmentType '独立开发')}}√{{/if}}</span>独立开发
+                <span class="checkbox">{{#if (eq project.developmentType '合作开发')}}√{{/if}}</span>合作开发
+                <span class="checkbox">{{#if (eq project.developmentType '委托开发')}}√{{/if}}</span>委托开发
+                <span class="checkbox">{{#if (eq project.developmentType '下达任务开发')}}√{{/if}}</span>下达任务开发
+            </td>
+        </tr>
+        <tr>
+            <td class="label">开发完成日期</td>
+            <td>{{project.completionDate}}</td>
+            <td class="label">首次发表日期</td>
+            <td>{{project.publishDate}}</td>
+        </tr>
+        <tr>
+            <td class="label">软件用途和技术特点</td>
+            <td colspan="3">
+                {{#if project.description}}
+                    {{project.description}}
+                {{else}}
+                    {{project.name}}是一款{{project.type}}，采用{{#each analysis.languages}}{{@key}}{{#unless @last}}、{{/unless}}{{/each}}等技术开发，
+                    具有{{#each analysis.frameworks}}{{this}}{{#unless @last}}、{{/unless}}{{/each}}等技术特色，
+                    为用户提供高效、稳定、易用的解决方案。
+                {{/if}}
+            </td>
+        </tr>
+        <tr>
+            <td class="label">主要功能和技术特点</td>
+            <td colspan="3">
+                1. 采用现代化的{{#each analysis.frameworks}}{{this}}{{#unless @last}}、{{/unless}}{{/each}}技术架构<br>
+                2. 支持{{#each analysis.languages}}{{@key}}{{#unless @last}}、{{/unless}}{{/each}}等多种编程语言<br>
+                3. 模块化设计，功能清晰，易于维护和扩展<br>
+                4. 用户界面友好，操作简单直观<br>
+                5. 性能优异，响应速度快，安全性高
+            </td>
+        </tr>
+    </table>
+    
+    <!-- 著作权人信息 -->
+    <div class="section-title">二、著作权人信息</div>
+    <table class="form-table">
+        <tr>
+            <td class="label">著作权人性质</td>
+            <td colspan="3">
+                <span class="checkbox">√</span>企业法人
+                <span class="checkbox"></span>事业法人
+                <span class="checkbox"></span>社会团体法人
+                <span class="checkbox"></span>其他组织
+                <span class="checkbox"></span>自然人
+            </td>
+        </tr>
+        <tr>
+            <td class="label">著作权人姓名/名称</td>
+            <td colspan="3">{{project.company}}</td>
+        </tr>
+        <tr>
+            <td class="label">国籍/地区</td>
+            <td>中国</td>
+            <td class="label">省份</td>
+            <td>{{project.province}}</td>
+        </tr>
+        <tr>
+            <td class="label">证件类型</td>
+            <td>
+                <span class="checkbox">√</span>营业执照
+                <span class="checkbox"></span>事业法人证书
+                <span class="checkbox"></span>身份证
+                <span class="checkbox"></span>其他
+            </td>
+            <td class="label">证件号码</td>
+            <td>{{project.licenseNumber}}</td>
+        </tr>
+        <tr>
+            <td class="label">联系人</td>
+            <td>{{project.contact}}</td>
+            <td class="label">联系电话</td>
+            <td>{{project.phone}}</td>
+        </tr>
+        <tr>
+            <td class="label">传真号码</td>
+            <td>{{project.fax}}</td>
+            <td class="label">邮政编码</td>
+            <td>{{project.zipCode}}</td>
+        </tr>
+        <tr>
+            <td class="label">地址</td>
+            <td colspan="3">{{project.address}}</td>
+        </tr>
+        <tr>
+            <td class="label">电子邮箱</td>
+            <td colspan="3">{{project.email}}</td>
+        </tr>
+    </table>
+    
+    <!-- 软件鉴别材料 -->
+    <div class="section-title">三、软件鉴别材料</div>
+    <table class="form-table">
+        <tr>
+            <td class="label">程序鉴别材料</td>
+            <td colspan="3">
+                一般交存：<span class="checkbox">√</span>程序的前、后各连续30页
+                <span class="checkbox"></span>例外交存
+            </td>
+        </tr>
+        <tr>
+            <td class="label">文档鉴别材料</td>
+            <td colspan="3">
+                一般交存：<span class="checkbox">√</span>软件说明书（用户手册、操作手册、设计说明书、使用说明书等任选一种）前、后各连续30页
+                <span class="checkbox"></span>例外交存
+            </td>
+        </tr>
+        <tr>
+            <td class="label">程序总行数</td>
+            <td>{{analysis.totalLines}}</td>
+            <td class="label">文档总页数</td>
+            <td>60</td>
+        </tr>
+    </table>
+    
+    <!-- 申请人信息 -->
+    <div class="section-title">四、申请人信息</div>
+    <table class="form-table">
+        <tr>
+            <td class="label">申请人</td>
+            <td colspan="3">
+                <span class="checkbox">√</span>著作权人
+                <span class="checkbox"></span>代理人
+            </td>
+        </tr>
+        <tr>
+            <td class="label">申请人姓名/名称</td>
+            <td colspan="3">{{project.company}}</td>
+        </tr>
+        <tr>
+            <td class="label">联系人</td>
+            <td>{{project.contact}}</td>
+            <td class="label">联系电话</td>
+            <td>{{project.phone}}</td>
+        </tr>
+        <tr>
+            <td class="label">电子邮箱</td>
+            <td colspan="3">{{project.email}}</td>
+        </tr>
+    </table>
+    
+    <!-- 权利归属 -->
+    <div class="section-title">五、权利归属</div>
+    <table class="form-table">
+        <tr>
+            <td class="label">权利取得方式</td>
+            <td colspan="3">
+                <span class="checkbox">√</span>原始取得
+                <span class="checkbox"></span>继受取得
+            </td>
+        </tr>
+        <tr>
+            <td class="label">权利范围</td>
+            <td colspan="3">
+                <span class="checkbox">√</span>全部权利
+                <span class="checkbox"></span>部分权利
+            </td>
+        </tr>
+        <tr>
+            <td class="label">是否存在权利限制</td>
+            <td colspan="3">
+                <span class="checkbox"></span>是
+                <span class="checkbox">√</span>否
+            </td>
+        </tr>
+    </table>
+    
+    <!-- 其他信息 -->
+    <div class="section-title">六、其他信息</div>
+    <table class="form-table">
+        <tr>
+            <td class="label">软件著作权是否已登记</td>
+            <td colspan="3">
+                <span class="checkbox"></span>是，登记号：
+                <span class="checkbox">√</span>否
+            </td>
+        </tr>
+        <tr>
+            <td class="label">申请登记的软件是否发表</td>
+            <td colspan="3">
+                <span class="checkbox">√</span>已发表，发表日期：{{project.publishDate}}
+                <span class="checkbox"></span>未发表
+            </td>
+        </tr>
+        <tr>
+            <td class="label">申请人保证</td>
+            <td colspan="3">
+                申请人保证本申请书及其附件中所填写的内容真实、准确，如有虚假，申请人承担相应的法律责任。
+                申请人签章：{{project.company}}
+            </td>
+        </tr>
+    </table>
+    
+    <!-- 签名和日期 -->
+    <table class="form-table" style="margin-top: 30px;">
+        <tr>
+            <td class="label">申请日期</td>
+            <td>{{generatedDate}}</td>
+            <td class="label">申请人签章</td>
+            <td style="height: 60px;">{{project.company}}</td>
+        </tr>
+    </table>
+    
+    <div class="note">
+        注：1. 本表应当在计算机上填写并打印。<br>
+        2. 申请表中的签章应当是原件，复印无效。<br>
+        3. 申请人为自然人的，应当在签章处签名；申请人为法人或其他组织的，应当加盖公章。<br>
+        4. 本表格式由国家版权局制定。
+    </div>
+</body>
+</html> 
