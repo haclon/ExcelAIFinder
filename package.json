@@ -1,44 +1,47 @@
 {
-  "name": "software-copyright-generator",
+  "name": "excel-ai-finder",
   "version": "1.0.0",
-  "description": "智能软件著作权登记材料生成器 - 基于AI技术的软著申请文档自动生成工具",
-  "main": "server/app.js",
+  "description": "Excel内容智能查找工具 - 支持语义搜索和批量处理，集成AI技术的Excel内容检索系统",
+  "main": "server/index.js",
   "scripts": {
-    "dev": "concurrently \"npm run server:dev\" \"npm run client:dev\"",
-    "server:dev": "cd server && nodemon app.js",
-    "client:dev": "cd client && npm start",
-    "build": "cd client && npm run build",
-    "start": "cd server && node app.js",
-    "install:all": "npm install && cd server && npm install && cd ../client && npm install",
-    "test": "npm run test:server && npm run test:client",
-    "test:server": "cd server && npm test",
-    "test:client": "cd client && npm test"
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build",
+    "dev": "concurrently \"npm run serve\" \"npm run server:dev\"",
+    "server:dev": "cd server && npx nodemon index.js",
+    "start": "cd server && node index.js",
+    "install:server": "cd server && npm install",
+    "test": "cd server && npm test"
   },
   "keywords": [
-    "软件著作权",
-    "软著登记",
-    "文档生成",
-    "AI",
-    "自动化",
-    "copyright",
-    "software-registration",
-    "document-generator"
+    "excel",
+    "search",
+    "ai",
+    "content-finder",
+    "semantic-search",
+    "batch-processing"
   ],
   "author": "厦门佰能思维人工智能科技有限公司 <contact@bnai.tech>",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/bnai-tech/software-copyright-generator.git"
+    "url": "git@github.com:haclon/ExcelAIFinder.git"
   },
   "bugs": {
-    "url": "https://github.com/bnai-tech/software-copyright-generator/issues"
+    "url": "https://github.com/haclon/ExcelAIFinder/issues"
   },
-  "homepage": "https://github.com/bnai-tech/software-copyright-generator#readme",
+  "homepage": "https://github.com/haclon/ExcelAIFinder#readme",
   "devDependencies": {
-    "concurrently": "^8.2.2"
+    "concurrently": "^8.2.2",
+    "@vue/cli-service": "^5.0.8"
   },
   "engines": {
     "node": ">=14.0.0",
     "npm": ">=6.0.0"
+  },
+  "dependencies": {
+    "axios": "^1.10.0",
+    "element-ui": "^2.15.14",
+    "vue": "^2.7.16",
+    "vue-template-compiler": "^2.7.16"
   }
 }

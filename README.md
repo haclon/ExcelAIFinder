@@ -1,4 +1,4 @@
-# 智能软件著作权登记材料生成器
+# ExcelAIFinder - Excel内容智能查找工具
 
 ![版本](https://img.shields.io/badge/版本-V1.0.0-blue)
 ![许可证](https://img.shields.io/badge/许可证-MIT-green)
@@ -7,79 +7,76 @@
 
 ## 项目简介
 
-智能软件著作权登记材料生成器是一款基于AI技术的自动化工具，专门用于生成软件著作权登记所需的各种申请材料。只需上传项目源代码和相关文档，系统即可自动调用DeepSeek等大语言模型，智能生成符合国家版权局要求的程序鉴别材料和文档鉴别材料。
+ExcelAIFinder 是一款基于AI技术的Excel内容智能查找工具，支持批量处理文件、精确匹配和语义理解搜索。通过集成SophNet AI服务，系统能够理解搜索意图，提供比传统关键字搜索更智能的内容检索功能。
 
 ## 核心功能
 
-### 🚀 智能文档生成
-- **程序鉴别材料**：自动提取源代码，生成符合要求的前30页和后30页程序清单
-- **文档鉴别材料**：基于项目信息智能生成完整的软件说明书（60页）
-- **申请表自动填写**：根据项目分析结果自动填写软件著作权登记申请表
+### 🔍 智能内容搜索
+- **精确匹配**：传统关键字搜索，快速定位包含特定文本的单元格
+- **语义理解**：使用AI模型分析内容语义，理解搜索意图
+- **混合模式**：结合精确匹配和语义分析，提供最佳搜索结果
+
+### 📊 Excel文件处理
+- **批量处理**：支持同时处理多个Excel文件
+- **多格式支持**：兼容.xlsx和.xls格式
+- **工作表分析**：逐个工作表进行内容分析
+- **大文件优化**：支持处理大型Excel文件（最大50MB）
 
 ### 🤖 AI 智能分析
-- **项目结构分析**：自动分析项目目录结构和技术架构
-- **功能特性提取**：智能识别软件的核心功能和技术特点
-- **开发信息推导**：基于代码和文档自动推导开发背景、技术路线等信息
+- **SophNet API集成**：使用DeepSeek-R1/v3等先进模型
+- **相关度评分**：为每个匹配结果提供0-100的相关度分数
+- **智能优化**：自动跳过高匹配度内容的AI分析，节约Token消耗
+- **批量优化**：支持设置批处理限制，避免超时
 
-### 📁 多格式支持
-- **源代码**：支持各种编程语言（JavaScript、Python、Java、C#等）
-- **项目文档**：支持README、设计文档、API文档等
-- **输出格式**：生成HTML、PDF等多种格式的申请材料
-
-### ⚡ 高效便捷
-- **一键生成**：上传项目文件后一键生成所有申请材料
-- **模板定制**：提供多种文档模板，适应不同类型的软件项目
-- **批量处理**：支持多个项目的批量处理
+### 📈 结果展示与导出
+- **详细结果显示**：显示匹配位置、工作表名称、具体内容
+- **相关度排序**：按匹配程度对结果进行智能排序
+- **导出功能**：支持将搜索结果导出为CSV格式
+- **进度跟踪**：实时显示批量处理进度
 
 ## 系统架构
 
 ```
-software-copyright-generator/
-├── client/                 # 前端应用 (React)
-│   ├── src/
-│   │   ├── components/     # 可复用组件
-│   │   ├── pages/         # 页面组件
-│   │   ├── services/      # API服务
-│   │   └── utils/         # 工具函数
-│   ├── public/            # 静态资源
-│   └── package.json       # 前端依赖
-├── server/                # 后端服务 (Node.js + Express)
-│   ├── controllers/       # 控制器
-│   ├── services/         # 业务逻辑
-│   ├── models/           # 数据模型
-│   ├── middlewares/      # 中间件
-│   ├── templates/        # 文档模板
-│   ├── routes/           # 路由配置
-│   ├── utils/            # 工具函数
-│   ├── uploads/          # 文件上传目录
-│   ├── generated/        # 生成文件目录
-│   └── package.json      # 后端依赖
-├── docs/                 # 项目文档
-├── examples/             # 示例项目
-└── README.md            # 项目说明
+excel-ai-finder/
+├── src/                    # Vue前端应用
+│   ├── components/         # Vue组件
+│   │   └── ExcelContentFinder.vue  # 主功能组件
+│   ├── App.vue            # 应用入口
+│   └── main.js            # 主脚本
+├── server/                # Node.js后端服务
+│   ├── index.js           # 主服务文件（ExcelAIFinder入口）
+│   ├── app.js             # 备用服务文件
+│   ├── routes/            # API路由
+│   │   ├── ai.js          # AI服务接口
+│   │   └── project.js     # 项目管理接口
+│   ├── uploads/           # 文件上传目录
+│   ├── logs/              # 日志文件
+│   └── package.json       # 后端依赖
+├── restructure/           # 重构版本（可选）
+│   └── server/            # 模块化后端架构
+├── public/                # 静态资源
+└── README.md             # 项目说明
 ```
 
 ## 技术栈
 
 ### 前端技术
-- **React 18**：现代化的用户界面框架
-- **Ant Design**：企业级UI设计语言和组件库
-- **React Router**：单页应用路由管理
+- **Vue 2.6.14**：渐进式JavaScript框架
+- **Element UI 2.15.13**：企业级UI组件库
 - **Axios**：HTTP客户端库
-- **React Dropzone**：文件拖拽上传组件
+- **Vue CLI 5**：前端构建工具
 
 ### 后端技术
 - **Node.js**：JavaScript运行时环境
-- **Express.js**：Web应用框架
+- **Express 4.18.2**：Web应用框架
+- **XLSX.js 0.18.5**：Excel文件处理库
 - **Multer**：文件上传中间件
-- **Handlebars**：模板引擎
-- **Puppeteer**：PDF生成工具
-- **Axios**：HTTP客户端（AI API调用）
+- **Winston**：日志记录系统
 
 ### AI集成
-- **DeepSeek API**：主要AI模型服务
-- **通义千问 API**：备选AI模型服务
-- **OpenAI API**：兼容的AI模型服务
+- **SophNet API**：主要AI服务提供商
+- **DeepSeek模型**：支持DeepSeek-R1、DeepSeek-v3等模型
+- **智能优化**：Token使用优化和批处理策略
 
 ## 快速开始
 
@@ -92,14 +89,21 @@ software-copyright-generator/
 
 1. **克隆项目**
 ```bash
-git clone https://github.com/bnai-tech/software-copyright-generator.git
-cd software-copyright-generator
+git clone git@github.com:haclon/ExcelAIFinder.git
+cd ExcelAIFinder
 ```
 
 2. **安装依赖**
 ```bash
-# 安装所有依赖（根目录、服务端、客户端）
-npm run install:all
+# 安装前端依赖
+npm install
+
+# 安装后端依赖
+cd server
+npm install
+
+# 返回项目根目录
+cd ..
 ```
 
 3. **配置环境变量**
@@ -107,274 +111,309 @@ npm run install:all
 # 复制环境变量模板
 cp server/env.example server/.env
 
-# 编辑环境变量文件，配置AI API密钥
-nano server/.env
+# 编辑环境变量文件，配置API密钥
+# Windows: notepad server/.env
+# Linux/Mac: nano server/.env
 ```
 
-4. **启动开发服务**
+4. **启动服务**
+
+**方式1：同时启动前端和后端（推荐）**
 ```bash
-# 同时启动前端和后端开发服务
+# 安装Vue CLI服务（如果还没有）
+npm install
+
+# 同时启动前端(8080端口)和后端(3001端口)
 npm run dev
 ```
 
-5. **访问应用**
-- 前端应用：http://localhost:3000
-- 后端API：http://localhost:5000
-
-### 生产部署
-
-1. **构建前端应用**
+**方式2：分别启动前端和后端**
 ```bash
-npm run build
+# 终端1：启动后端服务
+npm run server:dev
+
+# 终端2：启动前端开发服务器
+npm run serve
 ```
 
-2. **启动生产服务**
+**方式3：仅启动后端API服务**
 ```bash
-npm start
+# Windows PowerShell:
+cd server
+node index.js
+
+# Linux/Mac:
+cd server && node index.js
+```
+
+5. **访问应用**
+- 前端应用：http://localhost:8080 （Vue开发服务器）
+- 后端API：http://localhost:3001 （Express服务器）
+- API测试：http://localhost:3001/api/config
+
+### 环境配置
+
+编辑 `server/.env` 文件，配置以下参数：
+
+```env
+# Excel AI Finder 服务器配置
+PORT=3001
+NODE_ENV=development
+
+# SophNet AI API配置 (用于语义分析)
+SOPHNET_API_URL=https://www.sophnet.com/api/open-apis/v1/chat/completions
+SOPHNET_API_KEY=your_sophnet_api_key
+SOPHNET_MODEL=DeepSeek-R1
+SOPHNET_MAX_TOKENS=32768
+
+# 备用AI模型配置（可选）
+DEEPSEEK_API_KEY=your_deepseek_api_key_here  
+DEEPSEEK_API_URL=https://api.deepseek.com/v1/chat/completions
+DEEPSEEK_MODEL=deepseek-chat
+
+# 文件上传配置
+MAX_FILE_SIZE=50MB
+UPLOAD_PATH=./uploads
+
+# 日志配置
+LOG_LEVEL=info
+LOG_FILE=./logs/app.log
+
+# CORS配置 (Vue前端默认端口)
+CORS_ORIGIN=http://localhost:8080
 ```
 
 ## 使用指南
 
 ### 基本使用流程
 
-1. **上传项目文件**
-   - 支持拖拽上传或点击选择
-   - 可上传源代码文件、压缩包、文档等
-   - 自动解压和文件分析
+1. **选择Excel文件**
+   - 点击"选择本地文件夹"按钮
+   - 选择包含Excel文件的文件夹
+   - 系统自动识别.xlsx和.xls文件
 
-2. **填写项目信息**
-   - 软件名称、版本号
-   - 开发公司、联系方式
-   - 软件类型、开发方式等
+2. **输入搜索内容**
+   - 在搜索框中输入要查找的内容
+   - 可以是关键词、短语或描述性文本
+   - 支持中英文混合搜索
 
-3. **AI智能分析**
-   - 自动分析项目结构
-   - 识别技术栈和框架
-   - 生成项目描述和技术特点
+3. **配置搜索选项**
+   - 选择理解模式：语义理解/精确匹配/平衡模式
+   - 设置相关度阈值
+   - 配置批处理选项
 
-4. **生成申请材料**
-   - 程序鉴别材料（前30页+后30页）
-   - 文档鉴别材料（60页软件说明书）
-   - 软件著作权登记申请表
+4. **开始分析**
+   - 点击"分析"按钮开始处理
+   - 实时查看处理进度
+   - 等待分析完成
 
-5. **下载和提交**
-   - 支持HTML和PDF格式下载
-   - 可直接用于软著申请提交
+5. **查看结果**
+   - 按相关度排序查看匹配结果
+   - 查看具体匹配位置和内容
+   - 导出结果到CSV文件
 
-### AI模型配置
+### API配置
 
-系统支持多种AI模型，需要配置相应的API密钥：
+系统需要配置SophNet API密钥才能使用AI语义分析功能：
 
-#### DeepSeek配置
+#### SophNet配置
 ```env
-DEEPSEEK_API_KEY=your_deepseek_api_key
-DEEPSEEK_API_URL=https://api.deepseek.com/v1/chat/completions
-DEEPSEEK_MODEL=deepseek-chat
+SOPHNET_API_URL=https://www.sophnet.com/api/open-apis/v1/chat/completions
+SOPHNET_API_KEY=your_sophnet_api_key
+SOPHNET_MODEL=DeepSeek-R1
+SOPHNET_MAX_TOKENS=32768
 ```
 
-#### 通义千问配置
-```env
-QWEN_API_KEY=your_qwen_api_key
-QWEN_API_URL=https://dashscope.aliyuncs.com/api/v1/services/aigc/text-generation/generation
-QWEN_MODEL=qwen-max
-```
+## 特色功能
 
-#### OpenAI配置
-```env
-OPENAI_API_KEY=your_openai_api_key
-OPENAI_API_URL=https://api.openai.com/v1/chat/completions
-OPENAI_MODEL=gpt-4
-```
+### 智能优化策略
+- **自动跳过策略**：当直接匹配超过5处时，自动跳过AI分析节约Token
+- **文本截取优化**：只分析必要的文本片段（最多1000字符）
+- **批处理限制**：支持设置最大同时处理文件数量
+
+### 高级搜索选项
+- **理解模式选择**：智能语义理解、精确匹配、平衡模式
+- **相关度阈值**：过滤低相关度结果
+- **分析深度**：浅层分析vs深度分析选项
+- **批处理配置**：自定义批处理参数
+
+### 结果处理
+- **智能排序**：按相关度、匹配数量、文件名等多种方式排序
+- **详细展示**：显示工作表名称、行号、列号、具体内容
+- **导出功能**：支持CSV格式导出，便于进一步分析
 
 ## API文档
 
-### 项目管理接口
-
-#### 上传项目文件
+### 文件上传接口
 ```http
-POST /api/project/upload
+POST /upload-files
 Content-Type: multipart/form-data
 
 参数：
-- files: 项目文件（支持多文件）
-- projectInfo: 项目基本信息（JSON字符串）
-
-返回：
-{
-  "success": true,
-  "projectId": "uuid",
-  "filesCount": 10,
-  "message": "项目文件上传成功"
-}
+- files: Excel文件数组
+- searchContent: 搜索内容
+- options: 搜索选项（可选）
 ```
 
-#### 分析项目结构
+### 配置管理接口
 ```http
-POST /api/project/:projectId/analyze
+GET /api/config
+# 获取当前API配置
 
-返回：
+POST /api/config
+Content-Type: application/json
+
 {
-  "success": true,
-  "analysis": {
-    "totalFiles": 50,
-    "totalSize": 1024000,
-    "languages": {"JavaScript": 30, "CSS": 10},
-    "frameworks": ["React", "Express.js"]
-  }
+  "SOPHNET_API_URL": "API地址",
+  "SOPHNET_API_KEY": "API密钥",
+  "SOPHNET_MODEL": "模型名称",
+  "SOPHNET_MAX_TOKENS": "最大Token数"
 }
 ```
 
-### AI服务接口
-
-#### 生成项目描述
+### API连接测试
 ```http
-POST /api/ai/describe-project
+POST /api/test-connection
+Content-Type: application/json
 
-参数：
 {
-  "projectInfo": {...},
-  "analysis": {...},
-  "model": "deepseek"
-}
-
-返回：
-{
-  "success": true,
-  "description": "AI生成的项目描述",
-  "message": "项目描述生成成功"
+  "SOPHNET_API_URL": "API地址",
+  "SOPHNET_API_KEY": "API密钥",
+  "SOPHNET_MODEL": "模型名称",
+  "SOPHNET_MAX_TOKENS": "最大Token数"
 }
 ```
 
-### 文档生成接口
+## 故障排除
 
-#### 生成完整申请包
-```http
-POST /api/generate/complete-package/:projectId
+### 常见问题
 
-参数：
-{
-  "aiContent": {
-    "description": "...",
-    "features": "...",
-    "functionalDescription": "..."
-  },
-  "options": {...}
-}
+**Q: 出现 "Error: listen EADDRINUSE: address already in use :::3000" 错误？**
+```powershell
+# 解决方案1：杀死占用3000端口的进程
+# 查找占用3000端口的进程
+netstat -ano | findstr :3000
+# 根据PID杀死进程（替换<PID>为实际进程ID）
+taskkill /PID <PID> /F
 
-返回：
-{
-  "success": true,
-  "files": [
-    {"name": "程序鉴别材料.html", "path": "/generated/..."},
-    {"name": "文档鉴别材料.html", "path": "/generated/..."},
-    {"name": "软件著作权登记申请表.html", "path": "/generated/..."}
-  ]
-}
+# 解决方案2：使用不同的端口
+# 在server目录创建或编辑.env文件
+cd server
+echo PORT=3001 >> .env
+
+# 解决方案3：重启计算机（简单粗暴）
+# 如果不确定哪个进程占用了端口
+
+# 解决方案4：使用PowerShell查找并杀死Node进程
+Get-Process node | Stop-Process -Force
 ```
 
-## 开发指南
+**Q: 出现 "'nodemon' 不是内部或外部命令" 错误？**
+```powershell
+# 解决方案1：使用npx运行（推荐）
+cd server
+npx nodemon index.js
 
-### 项目结构说明
+# 解决方案2：全局安装nodemon
+npm install -g nodemon
 
-```
-client/src/
-├── components/          # 可复用组件
-│   ├── FileUpload.js   # 文件上传组件
-│   ├── ProjectForm.js  # 项目信息表单
-│   ├── FileTree.js     # 文件树组件
-│   └── CodePreview.js  # 代码预览组件
-├── pages/              # 页面组件
-│   ├── HomePage.js     # 首页
-│   └── GeneratorPage.js # 生成器页面
-├── services/           # API服务
-│   ├── api.js         # API配置
-│   ├── project.js     # 项目相关API
-│   ├── ai.js          # AI服务API
-│   └── generate.js    # 文档生成API
-└── utils/             # 工具函数
-    ├── file.js        # 文件处理工具
-    └── format.js      # 格式化工具
+# 解决方案3：直接使用node启动（不支持热重载）
+cd server
+node index.js
+
+# 解决方案4：确保server目录依赖已安装
+cd server
+npm install
 ```
 
-### 添加新的AI模型
+**Q: Windows PowerShell中出现 "标记'&&'不是此版本中的有效语句分隔符" 错误？**
+```powershell
+# 错误命令（Linux/Mac格式）：
+cd server && node index.js
 
-1. **在服务端添加模型配置**
-```javascript
-// server/routes/ai.js
-const AI_MODELS = {
-  // 现有模型...
-  newmodel: {
-    name: 'New Model',
-    url: process.env.NEWMODEL_API_URL,
-    key: process.env.NEWMODEL_API_KEY,
-    model: process.env.NEWMODEL_MODEL
-  }
-};
+# 正确命令（Windows PowerShell格式）：
+cd server
+node index.js
+
+# 或者使用npm脚本（推荐）：
+npm run dev
 ```
 
-2. **实现API调用逻辑**
-```javascript
-// 在callAI函数中添加新模型的处理逻辑
-if (modelType === 'newmodel') {
-  // 实现新模型的API调用
-}
+**Q: 启动时出现 "Cannot find module 'glob'" 错误？**
+```bash
+# 解决方案：安装缺失的依赖
+cd server
+npm install glob
 ```
 
-3. **更新环境变量模板**
-```env
-# server/env.example
-NEWMODEL_API_KEY=your_newmodel_api_key
-NEWMODEL_API_URL=https://api.newmodel.com/v1/chat
-NEWMODEL_MODEL=newmodel-latest
+**Q: 启动时出现 "Cannot find module" 相关错误？**
+```bash
+# 确保所有依赖已正确安装
+cd server
+npm install
+
+# 如果仍有问题，清除缓存重新安装
+cd server
+rm -rf node_modules package-lock.json
+npm install
 ```
 
-### 自定义文档模板
-
-1. **创建新模板文件**
-```handlebars
-<!-- server/templates/custom-template.hbs -->
-<!DOCTYPE html>
-<html>
-<head>
-    <title>{{project.name}} - 自定义模板</title>
-</head>
-<body>
-    <!-- 模板内容 -->
-</body>
-</html>
+**Q: 前端无法访问？**
+```bash
+# 检查后端是否正常启动
+curl http://localhost:3001/api/config
+# 或在浏览器中直接访问 http://localhost:3001
 ```
 
-2. **在生成服务中使用**
-```javascript
-// server/routes/generate.js
-async function generateCustomDocument(projectData, options) {
-  const templatePath = path.join(__dirname, '../templates/custom-template.hbs');
-  const template = await fs.readFile(templatePath, 'utf8');
-  const compiledTemplate = handlebars.compile(template);
-  return compiledTemplate(projectData);
-}
+**Q: API连接失败？**
+- 检查 `server/.env` 文件中的API配置
+- 确保SophNet API密钥正确
+- 测试网络连接是否正常
+
+**Q: 文件上传失败？**
+- 检查文件格式是否为.xlsx或.xls
+- 确认文件大小不超过50MB
+- 检查uploads目录权限
+
+### 正确的启动命令
+
+**❌ 错误的启动方式：**
+```bash
+node app.js                    # app.js不在根目录
+cd server; node app.js         # 主文件是index.js，不是app.js
+npm run serve                  # 没有serve脚本
 ```
 
-## 常见问题
+**✅ 正确的启动方式：**
+```bash
+# 方式1：使用npm脚本（推荐）
+npm run dev
 
-### Q: 支持哪些编程语言？
-A: 系统支持主流编程语言，包括但不限于：JavaScript、TypeScript、Python、Java、C#、Go、PHP、Ruby、C/C++等。
+# 方式2：直接启动后端
+# Windows PowerShell:
+cd server
+node index.js
 
-### Q: 生成的文档是否符合国家版权局要求？
-A: 是的，生成的文档完全按照《计算机软件著作权登记办法》的要求设计，包括程序鉴别材料（前30页+后30页）和文档鉴别材料（60页）。
+# Linux/Mac:
+cd server && node index.js
 
-### Q: 可以处理多大的项目？
-A: 系统支持最大100MB的文件上传，可以处理包含数千个文件的大型项目。
+# 方式3：使用start脚本
+npm start
+```
 
-### Q: AI生成的内容准确吗？
-A: AI会基于项目代码和结构进行智能分析，生成的内容具有较高的准确性。建议用户在提交前进行必要的检查和修改。
+### 支持的Excel文件格式
+- Microsoft Excel 2007及以上版本 (.xlsx)
+- Microsoft Excel 97-2003 (.xls)
+- 最大文件大小：50MB
 
-### Q: 是否支持离线使用？
-A: 目前需要网络连接来调用AI服务。我们计划在未来版本中支持本地AI模型。
+### 性能建议
+- 单次处理文件数量建议不超过20个
+- 大文件建议拆分后再处理
+- 设置合理的相关度阈值以过滤结果
 
 ## 贡献指南
 
-我们欢迎社区贡献！请遵循以下步骤：
+欢迎贡献代码！请遵循以下步骤：
 
 1. Fork 项目仓库
 2. 创建功能分支 (`git checkout -b feature/AmazingFeature`)
@@ -382,11 +421,11 @@ A: 目前需要网络连接来调用AI服务。我们计划在未来版本中支
 4. 推送到分支 (`git push origin feature/AmazingFeature`)
 5. 创建 Pull Request
 
-### 代码规范
-- 使用ESLint进行代码检查
-- 遵循Prettier代码格式化规则
-- 编写清晰的注释和文档
-- 添加适当的测试用例
+### 开发规范
+- 使用UTF-8编码，中文注释
+- 遵循ESLint代码规范
+- 保持函数功能单一
+- 编写清晰的commit信息
 
 ## 许可证
 
@@ -394,22 +433,21 @@ A: 目前需要网络连接来调用AI服务。我们计划在未来版本中支
 
 ## 联系我们
 
-- **公司**：厦门佰能思维人工智能科技有限公司
+- **项目地址**：https://github.com/haclon/ExcelAIFinder
+- **问题反馈**：https://github.com/haclon/ExcelAIFinder/issues
 - **邮箱**：contact@bnai.tech
-- **网站**：https://www.bnai.tech
-- **GitHub**：https://github.com/bnai-tech
 
 ## 更新日志
 
-### v1.0.0 (2024-05-30)
+### v1.0.0 (2024-01-01)
 - 🎉 首次发布
-- ✨ 支持多种编程语言项目分析
-- ✨ 集成DeepSeek、通义千问等AI模型
-- ✨ 自动生成程序鉴别材料和文档鉴别材料
-- ✨ 支持HTML和PDF格式输出
-- ✨ 现代化的Web界面
-- ✨ 完整的API文档和使用指南
+- ✨ 支持Excel文件批量处理
+- ✨ 集成SophNet AI语义分析
+- ✨ 智能搜索和结果排序
+- ✨ 结果导出功能
+- ✨ 现代化Vue界面
+- ✨ 完整的API接口
 
 ---
 
-**感谢使用智能软件著作权生成器！如果这个项目对您有帮助，请给我们一个⭐️** 
+**感谢使用ExcelAIFinder！如果这个项目对您有帮助，请给我们一个⭐️**

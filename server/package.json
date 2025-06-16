@@ -1,43 +1,33 @@
 {
-  "name": "software-copyright-generator-server",
+  "name": "excel-ai-finder-server",
   "version": "1.0.0",
-  "description": "软件著作权生成器后端服务",
-  "main": "app.js",
+  "description": "Excel内容智能查找工具后端服务 - 支持AI语义分析和批量Excel文件处理",
+  "main": "index.js",
   "scripts": {
-    "start": "node app.js",
-    "dev": "nodemon app.js",
+    "start": "node index.js",
+    "dev": "nodemon index.js",
     "test": "jest",
     "test:watch": "jest --watch"
   },
   "dependencies": {
-    "express": "^4.18.2",
-    "cors": "^2.8.5",
-    "multer": "^1.4.5-lts.1",
-    "dotenv": "^16.3.1",
     "axios": "^1.6.7",
-    "fs-extra": "^11.2.0",
-    "archiver": "^6.0.1",
-    "unzipper": "^0.10.14",
-    "handlebars": "^4.7.8",
-    "puppeteer": "^21.9.0",
-    "mammoth": "^1.6.0",
-    "pdf-lib": "^1.17.1",
-    "jsdom": "^23.2.0",
-    "cheerio": "^1.0.0-rc.12",
-    "moment": "^2.30.1",
-    "uuid": "^9.0.1",
-    "winston": "^3.11.0"
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "glob": "^11.0.3",
+    "multer": "^1.4.5-lts.1",
+    "winston": "^3.11.0",
+    "xlsx": "^0.18.5"
   },
   "devDependencies": {
-    "nodemon": "^3.0.3",
-    "jest": "^29.7.0",
-    "supertest": "^6.3.4"
+    "nodemon": "^3.0.3"
   },
   "keywords": [
-    "软件著作权",
-    "文档生成",
-    "AI",
-    "自动化"
+    "excel",
+    "ai-search",
+    "content-analysis",
+    "batch-processing",
+    "semantic-search"
   ],
   "author": "厦门佰能思维人工智能科技有限公司",
   "license": "MIT"
