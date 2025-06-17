@@ -10,7 +10,16 @@
     "server:dev": "cd server && npx nodemon index.js",
     "start": "cd server && node index.js",
     "install:server": "cd server && npm install",
-    "test": "cd server && npm test"
+    "test": "cd server && npm test",
+    "setup": "npm run install:all && npm run setup:env",
+    "install:all": "npm install && npm run install:server",
+    "setup:env": "node scripts/setup-env.js",
+    "quick-start": "npm run setup && npm run dev",
+    "frontend": "npm run serve",
+    "backend": "npm run server:dev",
+    "clean": "rm -rf node_modules server/node_modules",
+    "clean:win": "rmdir /s /q node_modules && rmdir /s /q server\\node_modules",
+    "reset": "npm run clean && npm run install:all"
   },
   "keywords": [
     "excel",
@@ -22,14 +31,6 @@
   ],
   "author": "厦门佰能思维人工智能科技有限公司 <contact@bnai.tech>",
   "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "git@github.com:haclon/ExcelAIFinder.git"
-  },
-  "bugs": {
-    "url": "https://github.com/haclon/ExcelAIFinder/issues"
-  },
-  "homepage": "https://github.com/haclon/ExcelAIFinder#readme",
   "devDependencies": {
     "concurrently": "^8.2.2",
     "@vue/cli-service": "^5.0.8"
@@ -44,4 +45,4 @@
     "vue": "^2.7.16",
     "vue-template-compiler": "^2.7.16"
   }
-}
+} 

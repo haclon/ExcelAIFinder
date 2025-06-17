@@ -1,6 +1,6 @@
 # ExcelAIFinder - Excel内容智能查找工具
 
-![版本](https://img.shields.io/badge/版本-V1.0.0-blue)
+![版本](https://img.shields.io/badge/版本-V1.2.0-blue)
 ![许可证](https://img.shields.io/badge/许可证-MIT-green)
 ![语言](https://img.shields.io/badge/语言-JavaScript-yellow)
 ![平台](https://img.shields.io/badge/平台-跨平台-orange)
@@ -43,17 +43,24 @@ excel-ai-finder/
 │   │   └── ExcelContentFinder.vue  # 主功能组件
 │   ├── App.vue            # 应用入口
 │   └── main.js            # 主脚本
-├── server/                # Node.js后端服务
-│   ├── index.js           # 主服务文件（ExcelAIFinder入口）
-│   ├── app.js             # 备用服务文件
-│   ├── routes/            # API路由
-│   │   ├── ai.js          # AI服务接口
-│   │   └── project.js     # 项目管理接口
+├── server/                # Node.js后端服务（原版）
+│   ├── index.js           # 主服务文件
 │   ├── uploads/           # 文件上传目录
-│   ├── logs/              # 日志文件
 │   └── package.json       # 后端依赖
-├── restructure/           # 重构版本（可选）
+├── restructure/           # 重构版本（推荐使用）
 │   └── server/            # 模块化后端架构
+│       ├── config/        # 配置文件
+│       ├── controllers/   # 控制器
+│       ├── middleware/    # 中间件
+│       ├── routes/        # 路由定义
+│       ├── services/      # 业务逻辑
+│       ├── utils/         # 工具函数
+│       ├── app.js         # Express应用配置
+│       └── server.js      # 服务器入口
+├── scripts/               # 启动脚本
+│   ├── start.bat          # Windows一键启动脚本
+│   ├── start.ps1          # PowerShell启动脚本
+│   └── start.sh           # Linux/Mac启动脚本
 ├── public/                # 静态资源
 └── README.md             # 项目说明
 ```
@@ -67,25 +74,54 @@ excel-ai-finder/
 - **Vue CLI 5**：前端构建工具
 
 ### 后端技术
-- **Node.js**：JavaScript运行时环境
+- **Node.js**：JavaScript运行时环境（推荐14.0.0+）
 - **Express 4.18.2**：Web应用框架
 - **XLSX.js 0.18.5**：Excel文件处理库
 - **Multer**：文件上传中间件
 - **Winston**：日志记录系统
+- **dotenv**：环境变量管理
 
 ### AI集成
 - **SophNet API**：主要AI服务提供商
 - **DeepSeek模型**：支持DeepSeek-R1、DeepSeek-v3等模型
 - **智能优化**：Token使用优化和批处理策略
 
-## 快速开始
+## 🚀 快速开始
 
 ### 环境要求
 - Node.js >= 14.0.0
 - npm >= 6.0.0
 - 现代浏览器（Chrome、Firefox、Safari、Edge）
 
-### 安装步骤
+### 💡 一键启动（推荐）
+
+**Windows 用户**：
+```bash
+# 双击运行 start.bat 文件，或在命令行中执行：
+start.bat
+```
+
+**Linux/Mac 用户**：
+```bash
+# 给脚本执行权限并运行
+chmod +x start.sh
+./start.sh
+```
+
+**PowerShell 用户**：
+```powershell
+# 在 PowerShell 中执行
+.\start.ps1
+```
+
+一键启动脚本会自动：
+- ✅ 检查Node.js和npm环境
+- ✅ 安装所需依赖
+- ✅ 创建环境配置文件
+- ✅ 启动前端和后端服务
+- ✅ 自动在浏览器中打开应用
+
+### 手动安装步骤
 
 1. **克隆项目**
 ```bash
@@ -98,78 +134,56 @@ cd ExcelAIFinder
 # 安装前端依赖
 npm install
 
-# 安装后端依赖
-cd server
+# 安装后端依赖（重构版）
+cd restructure/server
 npm install
 
 # 返回项目根目录
-cd ..
+cd ../..
 ```
 
 3. **配置环境变量**
 ```bash
-# 复制环境变量模板
-cp server/env.example server/.env
-
-# 编辑环境变量文件，配置API密钥
-# Windows: notepad server/.env
-# Linux/Mac: nano server/.env
+# 配置文件会自动创建，也可以手动编辑
+# Windows: notepad restructure/server/.env
+# Linux/Mac: nano restructure/server/.env
 ```
 
 4. **启动服务**
 
-**方式1：同时启动前端和后端（推荐）**
+**方式1：同时启动前后端（推荐）**
 ```bash
-# 安装Vue CLI服务（如果还没有）
-npm install
-
-# 同时启动前端(8080端口)和后端(3001端口)
 npm run dev
 ```
 
-**方式2：分别启动前端和后端**
+**方式2：分别启动**
 ```bash
-# 终端1：启动后端服务
+# 终端1：启动后端服务（端口3000）
 npm run server:dev
 
-# 终端2：启动前端开发服务器
+# 终端2：启动前端开发服务器（端口8080）
 npm run serve
 ```
 
-**方式3：仅启动后端API服务**
-```bash
-# Windows PowerShell:
-cd server
-node index.js
-
-# Linux/Mac:
-cd server && node index.js
-```
-
 5. **访问应用**
-- 前端应用：http://localhost:8080 （Vue开发服务器）
-- 后端API：http://localhost:3001 （Express服务器）
-- API测试：http://localhost:3001/api/config
+- 前端应用：http://localhost:8080
+- 后端API：http://localhost:3000
+- API测试：http://localhost:3000/api/health
 
 ### 环境配置
 
-编辑 `server/.env` 文件，配置以下参数：
+编辑 `restructure/server/.env` 文件，配置以下参数：
 
 ```env
 # Excel AI Finder 服务器配置
-PORT=3001
+PORT=3000
 NODE_ENV=development
 
 # SophNet AI API配置 (用于语义分析)
 SOPHNET_API_URL=https://www.sophnet.com/api/open-apis/v1/chat/completions
-SOPHNET_API_KEY=your_sophnet_api_key
+SOPHNET_API_KEY=your_sophnet_api_key_here
 SOPHNET_MODEL=DeepSeek-R1
 SOPHNET_MAX_TOKENS=32768
-
-# 备用AI模型配置（可选）
-DEEPSEEK_API_KEY=your_deepseek_api_key_here  
-DEEPSEEK_API_URL=https://api.deepseek.com/v1/chat/completions
-DEEPSEEK_MODEL=deepseek-chat
 
 # 文件上传配置
 MAX_FILE_SIZE=50MB
@@ -188,7 +202,7 @@ CORS_ORIGIN=http://localhost:8080
 ### 基本使用流程
 
 1. **选择Excel文件**
-   - 点击"选择本地文件夹"按钮
+   - 点击"选择本地文件夹"按钮或直接拖拽文件
    - 选择包含Excel文件的文件夹
    - 系统自动识别.xlsx和.xls文件
 
@@ -199,7 +213,7 @@ CORS_ORIGIN=http://localhost:8080
 
 3. **配置搜索选项**
    - 选择理解模式：语义理解/精确匹配/平衡模式
-   - 设置相关度阈值
+   - 设置相关度阈值（推荐50-70）
    - 配置批处理选项
 
 4. **开始分析**
@@ -219,10 +233,12 @@ CORS_ORIGIN=http://localhost:8080
 #### SophNet配置
 ```env
 SOPHNET_API_URL=https://www.sophnet.com/api/open-apis/v1/chat/completions
-SOPHNET_API_KEY=your_sophnet_api_key
+SOPHNET_API_KEY=your_sophnet_api_key_here
 SOPHNET_MODEL=DeepSeek-R1
 SOPHNET_MAX_TOKENS=32768
 ```
+
+**注意**：如果没有配置API密钥，系统仍可使用精确匹配和模糊搜索功能。
 
 ## 特色功能
 
@@ -246,7 +262,7 @@ SOPHNET_MAX_TOKENS=32768
 
 ### 文件上传接口
 ```http
-POST /upload-files
+POST /api/upload-files
 Content-Type: multipart/form-data
 
 参数：
@@ -284,132 +300,132 @@ Content-Type: application/json
 }
 ```
 
-## 故障排除
+### 健康检查
+```http
+GET /api/health
+# 检查后端服务状态
+```
+
+## 🔧 故障排除
 
 ### 常见问题
 
-**Q: 出现 "Error: listen EADDRINUSE: address already in use :::3000" 错误？**
-```powershell
-# 解决方案1：杀死占用3000端口的进程
-# 查找占用3000端口的进程
+**Q: 启动脚本闪退或显示乱码？**
+```bash
+# 解决方案1：使用UTF-8编码启动
+# 在start.bat顶部已添加 chcp 65001 命令
+
+# 解决方案2：手动启动
+npm run dev
+
+# 解决方案3：检查Node.js和npm是否正确安装
+node --version
+npm --version
+```
+
+**Q: 端口3000被占用错误？**
+```bash
+# Windows解决方案：
+# 查找占用端口的进程
 netstat -ano | findstr :3000
-# 根据PID杀死进程（替换<PID>为实际进程ID）
+# 杀死进程（替换<PID>为实际进程ID）
 taskkill /PID <PID> /F
 
-# 解决方案2：使用不同的端口
-# 在server目录创建或编辑.env文件
-cd server
-echo PORT=3001 >> .env
-
-# 解决方案3：重启计算机（简单粗暴）
-# 如果不确定哪个进程占用了端口
-
-# 解决方案4：使用PowerShell查找并杀死Node进程
-Get-Process node | Stop-Process -Force
+# 或者修改后端端口
+# 编辑 restructure/server/.env 文件
+PORT=3001
 ```
 
-**Q: 出现 "'nodemon' 不是内部或外部命令" 错误？**
-```powershell
-# 解决方案1：使用npx运行（推荐）
-cd server
-npx nodemon index.js
-
-# 解决方案2：全局安装nodemon
-npm install -g nodemon
-
-# 解决方案3：直接使用node启动（不支持热重载）
-cd server
-node index.js
-
-# 解决方案4：确保server目录依赖已安装
-cd server
-npm install
-```
-
-**Q: Windows PowerShell中出现 "标记'&&'不是此版本中的有效语句分隔符" 错误？**
-```powershell
-# 错误命令（Linux/Mac格式）：
-cd server && node index.js
-
-# 正确命令（Windows PowerShell格式）：
-cd server
-node index.js
-
-# 或者使用npm脚本（推荐）：
-npm run dev
-```
-
-**Q: 启动时出现 "Cannot find module 'glob'" 错误？**
-```bash
-# 解决方案：安装缺失的依赖
-cd server
-npm install glob
-```
-
-**Q: 启动时出现 "Cannot find module" 相关错误？**
-```bash
-# 确保所有依赖已正确安装
-cd server
-npm install
-
-# 如果仍有问题，清除缓存重新安装
-cd server
-rm -rf node_modules package-lock.json
-npm install
-```
-
-**Q: 前端无法访问？**
-```bash
-# 检查后端是否正常启动
-curl http://localhost:3001/api/config
-# 或在浏览器中直接访问 http://localhost:3001
-```
-
-**Q: API连接失败？**
-- 检查 `server/.env` 文件中的API配置
-- 确保SophNet API密钥正确
-- 测试网络连接是否正常
+**Q: API连接测试失败？**
+- ✅ 检查网络连接
+- ✅ 确认API密钥是否正确配置
+- ✅ 查看 `restructure/server/.env` 文件
+- ✅ 检查API服务是否可用
 
 **Q: 文件上传失败？**
-- 检查文件格式是否为.xlsx或.xls
-- 确认文件大小不超过50MB
-- 检查uploads目录权限
+- ✅ 确认文件格式为.xlsx或.xls
+- ✅ 检查文件大小不超过50MB
+- ✅ 确保uploads目录有写入权限
+- ✅ 检查后端服务是否正常运行
+
+**Q: 依赖安装失败？**
+```bash
+# 清除缓存重新安装
+npm cache clean --force
+rm -rf node_modules package-lock.json
+npm install
+
+# 检查网络连接
+npm config set registry https://registry.npmmirror.com/
+```
+
+**Q: 前端页面无法加载？**
+- ✅ 检查后端服务是否在端口3000运行
+- ✅ 检查CORS配置是否正确
+- ✅ 确认前端服务在端口8080运行
+- ✅ 检查浏览器控制台是否有错误信息
 
 ### 正确的启动命令
 
-**❌ 错误的启动方式：**
+**✅ 推荐的启动方式：**
 ```bash
-node app.js                    # app.js不在根目录
-cd server; node app.js         # 主文件是index.js，不是app.js
-npm run serve                  # 没有serve脚本
+# 方式1：一键启动脚本（最简单）
+start.bat                 # Windows
+./start.sh                # Linux/Mac
+
+# 方式2：npm脚本
+npm run dev               # 同时启动前后端
+
+# 方式3：分别启动
+npm run server:dev        # 启动后端
+npm run serve             # 启动前端（另一个终端）
 ```
 
-**✅ 正确的启动方式：**
+**❌ 过时的启动方式：**
 ```bash
-# 方式1：使用npm脚本（推荐）
-npm run dev
-
-# 方式2：直接启动后端
-# Windows PowerShell:
-cd server
-node index.js
-
-# Linux/Mac:
-cd server && node index.js
-
-# 方式3：使用start脚本
-npm start
+cd server && node index.js    # 旧版本路径
+node app.js                   # 不正确的入口文件
+npm run start                 # 未定义的脚本
 ```
 
 ### 支持的Excel文件格式
 - Microsoft Excel 2007及以上版本 (.xlsx)
 - Microsoft Excel 97-2003 (.xls)
 - 最大文件大小：50MB
+- 支持多工作表文件
 
 ### 性能建议
 - 单次处理文件数量建议不超过20个
 - 大文件建议拆分后再处理
-- 设置合理的相关度阈值以过滤结果
+- 设置合理的相关度阈值（50-70）以过滤结果
+- 使用精确匹配模式可节约API消耗
+
+## 更新日志
+
+### v1.2.0 (2024-01-15)
+- 🎉 添加一键启动脚本（start.bat, start.ps1, start.sh）
+- ✨ 重构后端架构，模块化设计
+- ✨ 优化启动流程，简化安装步骤
+- 🐛 修复中文乱码问题
+- 🐛 修复端口冲突问题
+- 📝 更新文档和故障排除指南
+- ⚡ 提升批量处理性能
+- 🔧 改进环境配置管理
+
+### v1.1.0 (2024-01-08)
+- ✨ 增强语义分析功能
+- ✨ 添加批量处理优化
+- 🐛 修复大文件处理问题
+- 📝 完善API文档
+
+### v1.0.0 (2024-01-01)
+- 🎉 首次发布
+- ✨ 支持Excel文件批量处理
+- ✨ 集成SophNet AI语义分析
+- ✨ 智能搜索和结果排序
+- ✨ 结果导出功能
+- ✨ 现代化Vue界面
+- ✨ 完整的API接口
 
 ## 贡献指南
 
@@ -426,28 +442,41 @@ npm start
 - 遵循ESLint代码规范
 - 保持函数功能单一
 - 编写清晰的commit信息
+- 保持向下兼容性
 
 ## 许可证
 
 本项目采用 MIT 许可证。详情请参阅 [LICENSE](LICENSE) 文件。
 
-## 联系我们
+## 关于我们
 
+### 🏢 公司简介
+
+**厦门佰能思维人工智能科技有限公司** 是一家以创新为驱动的前沿科技企业，专注投身人工智能与元宇宙领域。公司凭借强大的技术整合能力，融合AI、VR、AR、IoT等前沿科技，构建综合解决方案体系，为政企客户及个人用户提供专业服务。
+
+服务政府助力智慧城市建设，为决策提供数据支撑；帮助企业数字化转型，嵌入前沿技术提升效率与竞争力。公司汇聚行业精英，专注研发攻克难题。面向个人布局娱乐与生活应用。
+
+### 📞 联系方式
+
+#### 🏢 公司地址
+**地址**：厦门火炬高新区软件园一期思明软件园2号科讯楼3F
+
+#### 📧 邮箱联系
+**联系邮箱**：538825006@qq.com
+
+#### 💻 开发平台
+- **GitHub主页**：https://github.com/haclon
 - **项目地址**：https://github.com/haclon/ExcelAIFinder
 - **问题反馈**：https://github.com/haclon/ExcelAIFinder/issues
-- **邮箱**：contact@bnai.tech
 
-## 更新日志
+### 📄 企业信息
 
-### v1.0.0 (2024-01-01)
-- 🎉 首次发布
-- ✨ 支持Excel文件批量处理
-- ✨ 集成SophNet AI语义分析
-- ✨ 智能搜索和结果排序
-- ✨ 结果导出功能
-- ✨ 现代化Vue界面
-- ✨ 完整的API接口
+- **公司全称**：厦门佰能思维人工智能科技有限公司
+- **统一社会信用代码**：91350200MADWLHRY05
+- **经营范围**：人工智能技术研发、元宇宙应用开发、物联网技术服务
 
 ---
 
 **感谢使用ExcelAIFinder！如果这个项目对您有帮助，请给我们一个⭐️**
+
+**商务合作 | 技术支持 | 产品咨询，请随时联系我们！**
